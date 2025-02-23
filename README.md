@@ -4,3 +4,5 @@ Introduction to Java Script and DOM
 <<<<<<< HEAD
 Hosted at - file:///C:/Users/s579104/Documents/GitHub/44563-webapps-s25-assignment6-Komala3/city.html 
 
+=======
+>>>>>>> 06d59d83a6d01010ceba0d587ec88695c776cf77
