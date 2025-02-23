@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+ 
+<body>
+    
+<h1>City Game by Komala Soleti.</h1>
+
+<h2>Getting input</h2>
+
+<form>
+    <label for="form1_age">What is your age </label>
+    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
+
+    <label for="form1_nick">What is your nickname </label>
+    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
+
+    <input type="button" onclick="resolveForm()" value="Get values from form">
+</form>
+
+
+<p id="result">This text will be replaced </p>
+
+<script> 
+
+function resolveForm (){
+    console.log("Getting form values")
+    age = document.getElementById("form1_age").value
+    nick = document.getElementById("form1_nick").value
+    confirmed = confirm("Are these the values? "+age+" and "+nick)
+    
+    out = document.getElementById("result")
+    if(confirmed){
+        out.innerHTML = "Values were confirmed"
+    } else {
+        out.innerHTML = "Values were not confirmed"
+    }
+}
+
+let oops = 0;
+let found = 0;
+
+function checkCity() {
+  let secret = document.getElementById('secretCity').value;
+  let guess = document.getElementById('guessCity').value;
+
+  if (secret.toLowerCase() === guess.toLowerCase()) {
+    found++;
+    alert("GotCha!");
+  } else {
+    oops++;
+    alert("Awe!");
+  }
+
+  document.getElementById('results').innerHTML = `Correct: ${found} | Wrong: ${oops}`;
+}
+
+let usePic = 1;
+
+function updatePic() {
+  let img = document.getElementById('petImage');
+  switch (usePic) {
+    case 1:
+      img.src = 'otty.jpg';
+      usePic = 2;
+      break;
+    case 2:
+      img.src = 'sheep.png';
+      usePic = 3;
+      break;
+    default:
+      img.src = 'lab.jpg';
+      usePic = 1;
+      break;
+  }
+}
+</script>
+
+<form>
+    <label>Where in the world:</label>
+    <input type="password" id="secretCity" value="San Diego">
+    <br>
+    <label>Guess the city:</label>
+    <input type="text" id="guessCity">
+    <br>
+    <button type="button" onclick="checkCity()">Check the guess</button>
+  </form>
+  <div id="results"></div>
+
+  <div>
+    <img src="lab.jpg" id="petImage" width="150" height="150" onclick="updatePic()">
+  </div>
+
+</body>
+</html> 
