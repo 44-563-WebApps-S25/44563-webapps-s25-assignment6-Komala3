@@ -24,34 +24,34 @@ function resolveForm (){
     }
 }
 
-// Step 1: Define global counters
-let oops = 0;    // Tracks incorrect guesses
-let found = 0;   // Tracks correct guesses
 
-// Step 2: Function to check the guessed city
+let oops = 0;    
+let found = 0;   
+
+
 function checkCity() {
     try {
-        // Get secret city and user input, converting to lowercase for case insensitivity
+        
         let secretCity = document.getElementById("secretCity").value.trim().toLowerCase();
         let guessedCity = document.getElementById("guessCity").value.trim().toLowerCase();
 
-        // Step 3: Compare guessed city with secret city
+        
         if (guessedCity === secretCity) {
-            found++; // Increase correct count
+            found++; 
             document.getElementById("result").className = "alert alert-success";
             alert("Gotcha! You guessed it right!");
         } else {
-            oops++; // Increase incorrect count
+            oops++; 
             document.getElementById("result").className = "alert alert-danger";
             alert("Awe! Wrong guess.");
         }
 
-        // Step 4: Update result display
+        
         document.getElementById("result").innerHTML = `Correct: ${found} | Wrong: ${oops}`;
 
-        // Step 5: Check if wrong guesses exceed twice the correct ones
+        
         if (oops > found * 2) {
-            disableGame(); // Disable game if condition met
+            disableGame(); 
         }
 
     } catch (error) {
@@ -59,14 +59,14 @@ function checkCity() {
     }
 }
 
-// Step 6: Function to disable further guesses
+
 function disableGame() {
     let button = document.querySelector("button");
     button.onclick = function() {
         alert("Sorry, too many wrong guesses.");
     };
-    button.classList.add("btn-danger"); // Change button style
-    button.classList.remove("btn-primary"); // Remove original style
+    button.classList.add("btn-danger"); 
+    button.classList.remove("btn-primary"); 
 }
 
 
