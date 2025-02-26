@@ -5,20 +5,8 @@
     
 <h1>City Game by Komala Soleti.</h1>
 
-<h2>Getting input</h2>
 
-<form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
-
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-    <input type="button" onclick="resolveForm()" value="Get values from form">
-</form>
-
-
-<p id="result">This text will be replaced </p>
+<p id="result">Type the guess in the below </p>
 
 <script> 
 
@@ -36,23 +24,51 @@ function resolveForm (){
     }
 }
 
-let oops = 0;
-let found = 0;
+// Step 1: Define global counters
+let oops = 0;    // Tracks incorrect guesses
+let found = 0;   // Tracks correct guesses
 
+// Step 2: Function to check the guessed city
 function checkCity() {
-  let secret = document.getElementById('secretCity').value;
-  let guess = document.getElementById('guessCity').value;
+    try {
+        // Get secret city and user input, converting to lowercase for case insensitivity
+        let secretCity = document.getElementById("secretCity").value.trim().toLowerCase();
+        let guessedCity = document.getElementById("guessCity").value.trim().toLowerCase();
 
-  if (secret.toLowerCase() === guess.toLowerCase()) {
-    found++;
-    alert("GotCha!");
-  } else {
-    oops++;
-    alert("Awe!");
-  }
+        // Step 3: Compare guessed city with secret city
+        if (guessedCity === secretCity) {
+            found++; // Increase correct count
+            document.getElementById("result").className = "alert alert-success";
+            alert("Gotcha! You guessed it right!");
+        } else {
+            oops++; // Increase incorrect count
+            document.getElementById("result").className = "alert alert-danger";
+            alert("Awe! Wrong guess.");
+        }
 
-  document.getElementById('results').innerHTML = `Correct: ${found} | Wrong: ${oops}`;
+        // Step 4: Update result display
+        document.getElementById("result").innerHTML = `Correct: ${found} | Wrong: ${oops}`;
+
+        // Step 5: Check if wrong guesses exceed twice the correct ones
+        if (oops > found * 2) {
+            disableGame(); // Disable game if condition met
+        }
+
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
 }
+
+// Step 6: Function to disable further guesses
+function disableGame() {
+    let button = document.querySelector("button");
+    button.onclick = function() {
+        alert("Sorry, too many wrong guesses.");
+    };
+    button.classList.add("btn-danger"); // Change button style
+    button.classList.remove("btn-primary"); // Remove original style
+}
+
 
 let usePic = 1;
 
