@@ -3,5 +3,7 @@
 Introduction to Java Script and DOM
 Hosted at:
 [City Game](https://github.com/44-563-WebApps-S25/44563-webapps-s25-assignment6-Komala3/blob/main/city.html)
+-----
 [Message Cost](https://github.com/44-563-WebApps-S25/44563-webapps-s25-assignment6-Komala3/blob/main/message.html)
+----
 [Dinner Plans](https://github.com/44-563-WebApps-S25/44563-webapps-s25-assignment6-Komala3/blob/main/dinner.html)
